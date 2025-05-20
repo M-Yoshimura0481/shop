@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Iログイン</title>
+</head>
+<body>
+	<div>ログイン</div>
+	<form method="get" action="@{/doLogin}">
+		ユーザーID:<input type="number" name="userId"/>
+		パスワード:<input type="password"" name="password"/>
+		<input type="submit" value="GETによるログイン"/>
+	</form>
+</body>
+</html>
