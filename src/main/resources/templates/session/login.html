@@ -6,10 +6,15 @@
 </head>
 <body>
 	<div>ログイン</div>
-	<form method="get" action="@{/doLogin}">
+	<form method="get" th:action="@{/doLogin}">
 		ユーザーID:<input type="number" name="userId"/>
-		パスワード:<input type="password"" name="password"/>
+		パスワード:<input type="password" name="password"/>
 		<input type="submit" value="GETによるログイン"/>
+	</form>
+		<form method="post" th:action="@{/doLogin}">
+		ユーザーID:<input type="number" name="userId"/>
+		パスワード:<input type="password" name="password"/>
+		<input type="submit" value="POSTによるログイン"/>
 	</form>
 </body>
 </html>
