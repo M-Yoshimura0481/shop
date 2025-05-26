@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import jp.co.sss.shop.form.LoginForm;
+import jp.co.sss.shop.form.LoginFormWithAnnotation;
 import jp.co.sss.shop.form.LoginFormWithValidation;
 
 
@@ -91,25 +92,49 @@ public class SessionController {
 		//表示したいtemplatesフォルダ内のファイル名
 		return "session/login_on_session"; 
 	}
-	
+
 	@RequestMapping(path = "/loginWithValidation", method = RequestMethod.GET)
 	public String loginWithValidation(@ModelAttribute LoginFormWithValidation form) {
-	return "session/login_with_validation";
-	}
-	@RequestMapping(path = "/loginWithValidation", method = RequestMethod.POST)
-	public String doLoginWithValidation(
-	@Valid @ModelAttribute LoginFormWithValidation form,
-	BindingResult result,HttpSession session) {
-	if (result.hasErrors()) {
-	return "session/login_with_validation";
-	}
-	 if (form.getUserId() == 123) {
-	 //入力したユーザ ID をセッション属性 userId としてセッションスコープに保存
-	 session.setAttribute("userId", form.getUserId());
-	 return "redirect:/";
-	} else {
-	return "session/login_with_validation";
-	}
+		return "session/login_with_validation";
 	}
 
+	@RequestMapping(path = "/loginWithValidation", method = RequestMethod.POST)
+	public String doLoginWithValidation(
+			@Valid @ModelAttribute LoginFormWithValidation form,
+			BindingResult result, HttpSession session) {
+		if (result.hasErrors()) {
+			return "session/login_with_validation";
+		}
+		if (form.getUserId() == 123) {
+			//入力したユーザ ID をセッション属性 userId としてセッションスコープに保存
+			session.setAttribute("userId", form.getUserId());
+			return "redirect:/";
+		} else {
+			return "session/login_with_validation";
+		}
+	}
+
+	@RequestMapping(path = "/loginWithAnnotation", method = RequestMethod.GET)
+	public String loginWithAnnotation(@ModelAttribute LoginFormWithAnnotation form) {
+		return "session/login_with_annotation";
+	}
+
+	@RequestMapping(path = "/loginWithAnnotation", method = RequestMethod.POST)
+	public String doLoginWithAnnotation(
+			//入力チェックの有無　入力チェック情報
+			@Valid @ModelAttribute LoginFormWithAnnotation form,
+			BindingResult result, HttpSession session) {
+		//入力チェックエラーなら
+		if (result.hasErrors()) {
+			return "session/login_with_annotation";
+		}
+		if (form.getUserId() == 123) {
+			//入力したユーザ ID をセッション属性 userId としてセッションスコープに保存
+			session.setAttribute("userId", form.getUserId());
+			return "redirect:/";
+		} else {
+			return "session/login_with_annotation";
+		}
+	}
+	
 }

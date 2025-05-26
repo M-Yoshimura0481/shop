@@ -5,8 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-
-public class LoginFormWithValidation {
+import jp.co.sss.shop.util.Login;
+@Login
+public class LoginFormWithAnnotation {
  @NotNull
  @Max(value = 999)
  private Integer userId;
