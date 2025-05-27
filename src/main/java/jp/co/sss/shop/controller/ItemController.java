@@ -1,5 +1,7 @@
 package jp.co.sss.shop.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -127,5 +129,14 @@ public class ItemController {
 		System.out.println("名前" + form.getName());
 		return "items/create_complete_hidden";
 	}
+	
+	@RequestMapping("/items/findAllJs")
+	public String showItemListJs(Model model) {
+	model.addAttribute("items", repository.findAll());
+	// 実行時の日付を取得してリクエスト属性に保存する
+	model.addAttribute("now", new Date());
+	return "items/item_list_js";
+	}
+
 	
 }

@@ -42,4 +42,9 @@ public class IndexController {
 		//　処理が終わるため、データは消える
 		return "redirect:/"; 
 	}
+	@RequestMapping("/layout_view")
+	public String layoutView() {
+	return "layout_view";
+	}
+
 }
